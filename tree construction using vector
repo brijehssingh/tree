@@ -1,0 +1,111 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+
+  class node {
+      
+      public:
+      int val ;
+       node* left;
+      node* right;
+         
+      
+      
+      node( int data){
+          
+          val= data;
+           
+          left = nullptr;
+           right= nullptr; 
+            
+          
+      }
+      
+      
+      
+      
+      
+      
+      
+      
+  };
+  
+  
+  
+  node* solve( vector<int>&v , int st  ){
+      
+      int n = v.size();
+       
+      if(st>=n) return nullptr;
+       
+          node* root = new node(v[st]);
+            
+          
+          
+          if(st%2==0) {
+              
+           root->right=    solve( v, st+1);
+               
+              
+          }else{
+              
+            root->left=   solve(v, st+1);
+               
+                
+          }
+          
+          return root;
+           
+            
+      
+      
+  }
+  
+  
+  vector<int>tree;
+   
+  
+  void print( node* root ){
+      
+      if(!root) return ;
+       
+        
+       
+          print( root->left);
+            tree.push_back(root->val);
+           print(root->right);
+           
+           
+      
+      
+  }
+  
+
+
+
+
+int main() {
+	// your code goes here
+	
+	vector<int>v= {3,9,20,15,7};
+	
+	int n = v.size();
+	 
+	
+	
+node* root= solve( v, 0 );
+	 
+	
+	
+	print(root);
+	 
+	 
+	 for(auto i : tree){
+	     
+	     cout<<i <<" ";
+	      
+	 }
+	
+	
+
+}
